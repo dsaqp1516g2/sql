@@ -79,17 +79,34 @@ CREATE TABLE project_events (
     title VARCHAR(100) NOT NULL,
     date_timestamp DATETIME NOT NULL,
     projectid BINARY(16) NOT NULL,
-    FOREIGN KEY (projectid) REFERENCES projects(id),
+    FOREIGN KEY (projectid) REFERENCES projects(id) on delete cascade,
     PRIMARY KEY (id)     
 );
 
-CREATE TABLE comment (
+CREATE TABLE project_comments (
     id BINARY(16) NOT NULL,
-    title VARCHAR(100) NOT NULL,
+    content VARCHAR(100) NOT NULL,
     date_timestamp DATETIME NOT NULL,
-    projectid BINARY(16),
-    taskid BINARY(16),
-    FOREIGN KEY (projectid) REFERENCES projects(id),
-    FOREIGN KEY (taskid) REFERENCES tasks(id),
+    projectid BINARY(16),    
+    FOREIGN KEY (projectid) REFERENCES projects(id) on delete cascade,    
     PRIMARY KEY (id)     
 );
+
+CREATE TABLE task_comments (
+    id BINARY(16) NOT NULL,
+    content VARCHAR(100) NOT NULL,
+    date_timestamp DATETIME NOT NULL,
+    taskid BINARY(16),       
+    FOREIGN KEY (taskid) REFERENCES tasks(id) on delete cascade,
+    PRIMARY KEY (id)     
+);
+
+CREATE TABLE invites (
+    id BINARY(16) NOT NULL,
+    userid BINARY(16) NOT NULL,
+    projectid BINARY(16) NOT NULL,          
+    FOREIGN KEY (userid) REFERENCES users(id) on delete cascade,
+    FOREIGN KEY (projectid) REFERENCES projects(id) on delete cascade,
+    PRIMARY KEY (id)     
+);
+
