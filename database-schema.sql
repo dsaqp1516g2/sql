@@ -9,8 +9,7 @@ CREATE TABLE users (
     password BINARY(16) NOT NULL,
     email VARCHAR(255) NOT NULL,
     fullname VARCHAR(255) NOT NULL,
-    github_loginid VARCHAR(15) NOT NULL,
-    github_password BINARY(16) NOT NULL,
+    github_auth BINARY(16) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -52,7 +51,6 @@ CREATE TABLE tasks (
     description VARCHAR(500),
     creation_timestamp DATETIME not null default current_timestamp,    
     due_timestamp DATETIME,
-    repo_url VARCHAR(50) NOT NULL,
     label ENUM ('bug', 'enhancement'),
     FOREIGN KEY (creator_userid) REFERENCES users(id) on delete cascade,
     PRIMARY KEY (id)    
