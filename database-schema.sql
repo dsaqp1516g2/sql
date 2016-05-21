@@ -33,6 +33,7 @@ CREATE TABLE projects (
     description VARCHAR(500),
     creation_timestamp DATETIME not null default current_timestamp,    
     repo_url VARCHAR(50) NOT NULL,
+    admin_userid BINARY(16) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -45,6 +46,7 @@ CREATE TABLE user_projects (
 
 CREATE TABLE tasks (
     id BINARY(16) NOT NULL,    
+    projectid BINARY(16) NOT NULL,
     creator_userid BINARY(16) NOT NULL,
     title VARCHAR(100) NOT NULL, 
     state ENUM ('proposal', 'in_process', 'completed') NOT NULL default 'proposal',
@@ -52,6 +54,7 @@ CREATE TABLE tasks (
     creation_timestamp DATETIME not null default current_timestamp,    
     due_timestamp DATETIME,
     label ENUM ('bug', 'enhancement'),
+    FOREIGN KEY (projectid) REFERENCES projects(id) on delete cascade,
     FOREIGN KEY (creator_userid) REFERENCES users(id) on delete cascade,
     PRIMARY KEY (id)    
 );
