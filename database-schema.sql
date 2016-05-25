@@ -68,9 +68,11 @@ CREATE TABLE user_tasks (
 
 CREATE TABLE checklist_items (
     id BINARY(16) NOT NULL,
+    taskid BINARY(16) NOT NULL,
     title VARCHAR(100) NOT NULL,
     checked boolean NOT NULL default 0,
     user_checked BINARY(16),
+    FOREIGN KEY (taskid) REFERENCES tasks(id) on delete cascade,
     FOREIGN KEY (user_checked) REFERENCES users(id) on delete cascade,
     PRIMARY KEY (id)
 );
