@@ -32,7 +32,8 @@ CREATE TABLE projects (
     name VARCHAR(100) NOT NULL, 
     description VARCHAR(500),
     creation_timestamp DATETIME not null default current_timestamp,    
-    repo_url VARCHAR(50) NOT NULL,
+    repo_owner VARCHAR(50) NOT NULL,
+    repo_name VARCHAR (50) NOT NULL,
     admin_userid BINARY(16) NOT NULL,
     PRIMARY KEY (id)
 );
