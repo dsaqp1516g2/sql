@@ -9,7 +9,7 @@ CREATE TABLE users (
     password BINARY(16) NOT NULL,
     email VARCHAR(255) NOT NULL,
     fullname VARCHAR(255) NOT NULL,
-    github_auth BINARY(16) NOT NULL,
+    github_auth varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
